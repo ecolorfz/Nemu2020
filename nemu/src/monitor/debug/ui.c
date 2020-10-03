@@ -36,6 +36,42 @@ static int cmd_q(char *args) {
 	return -1;
 }
 
+static int cmd_si(char *args){
+	char *arg=strtok(NULL, " ");
+
+	int i;
+
+	if(arg==NULL){
+		cpu_exec(1);
+		return 0;
+	}
+       if(strcmp(arg,"10")==0){
+	       cpu_exec(10);
+	       return 0;
+       }
+       else{
+	       i=(long long)(arg-'0');
+	       cpu_exec(i);
+	       return 0;
+       }
+
+       
+       return 0;
+}
+
+static int cmd_infor(char *args){
+        cpu_exec(0);
+        return 0;
+}
+
+
+static int cmd_x(char *args){
+        cpu_exec(0);
+        return 0;
+}
+
+
+
 static int cmd_help(char *args);
 
 static struct {
@@ -46,6 +82,9 @@ static struct {
 	{ "help", "Display informations about all supported commands", cmd_help },
 	{ "c", "Continue the execution of the program", cmd_c },
 	{ "q", "Exit NEMU", cmd_q },
+	{ "si", "si[N]: Program pauses after N instructions are executed in a single step", cmd_si },
+	{ "info r", "Print the status of the register",cmd_infor},
+	{ "x", "x N EXPR:Find the value of the expression EXPR, use the result as the starting memory address, and output N successive 4-byte values in hexadecimal form. ",cmd_x},
 
 	/* TODO: Add more commands */
 
