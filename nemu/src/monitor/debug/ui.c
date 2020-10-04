@@ -74,7 +74,18 @@ static int cmd_info(char *args){
 
 
 static int cmd_x(char *args){
-        cpu_exec(0);
+	char *arg1=strtok(NULL," ");
+	char *arg2=strtok(NULL," ");
+	int num1;
+	int num2;
+
+        sscanf(arg1,"%d",&num1);
+	sscanf(arg2,"%x",&num2);
+	while(num1){
+		
+		printf("%d",swaddr_read(num2,4));
+		num1--;
+	}
         return 0;
 }
 
