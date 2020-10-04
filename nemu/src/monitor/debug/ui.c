@@ -84,7 +84,7 @@ static int cmd_x(char *args){
 	sscanf(arg2,"%x",&num2);
 	for(i=0;i<num1;i++){
 		
-		printf("%x\n",swaddr_read(num2+32*i,32));
+		printf("%x\n",swaddr_read(num2+4*i,4));
 	}
         return 0;
 }
