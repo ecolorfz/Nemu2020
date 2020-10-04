@@ -64,9 +64,9 @@ static int cmd_info(char *args){
 	int i;
         if(strcmp(arg,"r")==0){
 		for(i=R_EAX; i<=R_EDI;i++){
-        	    printf("%s, 0x%x\n", regsl[i] ,  reg_l(i));
+        	    printf("$%s, 0x%x\n", regsl[i] ,  reg_l(i));
 		}
-		printf("eip, 0x%x\n",cpu.eip);
+		printf("$eip, 0x%x\n",cpu.eip);
 	}
         
         return 0;
