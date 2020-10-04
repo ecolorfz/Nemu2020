@@ -59,8 +59,16 @@ static int cmd_si(char *args){
        return 0;
 }
 
-static int cmd_infor(char *args){
-        cpu_exec(0);
+static int cmd_info(char *args){
+	char *arg=strtok(NULL,"o");
+	int i;
+        if(strcmp(arg,"r")==0){
+		for(i=R_EAX; i<=R_EDI;i++){
+        	    printf("%s,%x",regsl[i], reg_l(i));
+		}
+		printf("eip,%x",cpu.eip);
+	}
+        
         return 0;
 }
 
@@ -83,7 +91,7 @@ static struct {
 	{ "c", "Continue the execution of the program", cmd_c },
 	{ "q", "Exit NEMU", cmd_q },
 	{ "si", "si[N]: Program pauses after N instructions are executed in a single step", cmd_si },
-	{ "info r", "Print the status of the register",cmd_infor},
+	{ "info", "info r:Print the status of the register, info w:Print the status of watchpoint",cmd_info},
 	{ "x", "x N EXPR:Find the value of the expression EXPR, use the result as the starting memory address, and output N successive 4-byte values in hexadecimal form. ",cmd_x},
 
 	/* TODO: Add more commands */
