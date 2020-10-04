@@ -107,7 +107,7 @@ static bool make_token(char *e) {
 				                 break;
 					case NUMBER:
 				                 tokens[6].type=NUMBER;
-				                // tokens[6].str[32]={'0','1','2','3','4','5','6','7','8','9'};
+				                 //tokens[6].str[32]="123456789";
 				                 break;
 					case EQ:
 				                 tokens[7].type=EQ;
