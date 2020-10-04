@@ -78,13 +78,13 @@ static int cmd_x(char *args){
 	char *arg2=strtok(NULL," ");
 	int num1;
 	int num2;
+	int i;
 
         sscanf(arg1,"%d",&num1);
 	sscanf(arg2,"%x",&num2);
-	while(num1){
+	for(i=0;i<num1;i++){
 		
-		printf("%d",swaddr_read(num2,4));
-		num1--;
+		printf("%x\n",swaddr_read(num2+32*i,32));
 	}
         return 0;
 }
