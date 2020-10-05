@@ -47,7 +47,7 @@ void init_regex() {
 	for(i = 0; i < NR_REGEX; i ++) {
 		ret = regcomp(&re[i], rules[i].regex, REG_EXTENDED);
 		if(ret != 0) {
-			regerror(ret, &re[i], error_msg, 128);
+			regerror(ret, &re[i], error_msg, 129);
 			Assert(ret == 0, "regex compilation failed: %s\n%s", error_msg, rules[i].regex);
 		}
 	}
@@ -74,10 +74,10 @@ static bool make_token(char *e) {
 			if(regexec(&re[i], e + position, 1, &pmatch, 0) == 0 && pmatch.rm_so == 0) {
 				char *substr_start = e + position;
 				int substr_len = pmatch.rm_eo;
-
+                                strncpy(tokens[nr_token].str, substr_start, substr_len);
 				Log("match rules[%d] = \"%s\" at position %d with len %d: %.*s", i, rules[i].regex, position, substr_len, substr_len, substr_start);
 				position += substr_len;
-
+                                nr_token++;
 				/* TODO: Now a new token is recognized with rules[i]. Add codes
 				 * to record the token in the array `tokens'. For certain types
 				 * of tokens, some extra actions should be performed.
@@ -88,29 +88,29 @@ static bool make_token(char *e) {
 					         break;
 					case '+':
 						 
-						 tokens[0].type=43;
+						 tokens[nr_token].type=43;
 						 break;
 				        case '-':
-						 tokens[1].type=45;
+						 tokens[nr_token].type=45;
 						 break;
 			                case '*':
-						 tokens[2].type=42;
+						 tokens[nr_token].type=42;
 						 break;
 			                case '/':
-						 tokens[3].type=47;
+						 tokens[nr_token].type=47;
 						 break;
 			                case '(':
-						 tokens[4].type=40;
+						 tokens[nr_token].type=40;
 						 break;
 			                case ')':
-				                 tokens[5].type=41;
+				                 tokens[nr_token].type=41;
 				                 break;
 					case NUMBER:
-				                 tokens[6].type=NUMBER;
-				                 //tokens[6].str[32]="123456789";
+				                 tokens[nr_token].type=NUMBER;
+						 
 				                 break;
 					case EQ:
-				                 tokens[7].type=EQ;
+				                 tokens[nr_token].type=EQ;
 				                 break;		 
 				}
 
