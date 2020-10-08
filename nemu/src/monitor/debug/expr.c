@@ -160,11 +160,11 @@ static bool make_token(char *e) {
 						strncpy(tokens[nr_token].str, substr_start, substr_len);
 				        break;		 
 				}
-
+                              nr_token++;
 				
 			}
 		}
-
+                
 		if(i == NR_REGEX) {
 			printf("no match at position %d\n%s\n%*.s^\n", position, e, position, "");
 			return false;
