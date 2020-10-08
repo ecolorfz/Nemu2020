@@ -198,12 +198,13 @@ int pr(int type){
 
 
 uint32_t eval(int p, int q) {
+
     if(p > q) {
 		assert(0);
         /* Bad expression */
     }
     else if(p == q) { 
-		int num;
+	        int num;	
 		if(tokens[p].type==NUMBER){
 		    sscanf(tokens[p].str,"%d",&num);
 		    return num;
@@ -213,20 +214,9 @@ uint32_t eval(int p, int q) {
 			return num;
 		}
 		else if(tokens[p].type==REG){
-			int i;
-            for (i = R_EAX; i <= R_EDI ; i ++) {
-    			if (strcmp(tokens[p].str, regsl[i]) == 0) {
-        			break;
-    			}
-			}
-			if (i > R_EDI) {
-    			if (strcmp(tokens[p].str, "eip") == 0) {
-        				num = cpu.eip;
-    				}
-				} 
-			else num = reg_l(i);
-			return num;
+		return 1;
 		}
+	
         /* Single token.
          * For now this token should be a number. 
          * Return the value of the number.
@@ -272,7 +262,7 @@ uint32_t eval(int p, int q) {
             default: assert(0);
         }
     }
-    return 0;
+	return 0;
 }
 
 uint32_t expr(char *e, bool *success) {
@@ -290,7 +280,7 @@ uint32_t expr(char *e, bool *success) {
 	}
 	for(i=0;i<nr_token;i++){
         if(tokens[i].type=='*' &&(i==0||tokens[i-1].type=='+'||tokens[i-1].type=='-'||tokens[i-1].type=='*'||tokens[i-1].type=='/')){
-                        tokens[i].type=DEFER;
+			tokens[i].type=DEFER;
 		}
 	}
 	return eval(0, nr_token);
