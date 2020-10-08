@@ -96,7 +96,7 @@ static int cmd_p(char *args){
 	uint32_t ans = expr(arg1,&success);
 	if(success)
     	printf("%d\n",ans);
-	assert(0);
+	
    	 return 0;
 }
 
