@@ -283,7 +283,7 @@ uint32_t expr(char *e, bool *success) {
 			tokens[i].type=DEFER;
 		}
 	}
-	return eval(0, nr_token);
+	return eval(0, nr_token-1);
 	panic("please implement me");
 	return 0;
 }
