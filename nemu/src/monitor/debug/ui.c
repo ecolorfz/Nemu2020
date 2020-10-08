@@ -90,7 +90,12 @@ static int cmd_x(char *args){
 }
 
 
-
+static int cmd_p(char *args){
+	char *arg1=strtok(NULL," ");
+	bool success=true;
+    	printf("%d",expr( arg1, success);
+   	 return 0;
+}
 static int cmd_help(char *args);
 
 static struct {
@@ -104,7 +109,7 @@ static struct {
 	{ "si", "si[N]: Program pauses after N instructions are executed in a single step", cmd_si },
 	{ "info", "info r:Print the status of the register, info w:Print the status of watchpoint",cmd_info},
 	{ "x", "x N EXPR:Find the value of the expression EXPR, use the result as the starting memory address, and output N successive 4-byte values in hexadecimal form. ",cmd_x},
-
+        { "p", "p EXPR:Evaluate expression EXPR",cmd_p},
 	/* TODO: Add more commands */
 
 };
