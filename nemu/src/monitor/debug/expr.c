@@ -96,68 +96,82 @@ static bool make_token(char *e) {
 
 					case '+':
 						 tokens[nr_token].type='+';
+						 position++;
 						 break;
 
 				    case '-':
 						 tokens[nr_token].type='-';
+						 position++;
 						 break;
 
 			        case '*':
 						 tokens[nr_token].type='*';
+						 position++;
 						 break;
 
 			        case '/':
 						 tokens[nr_token].type='/';
+						 position++;
 						 break;
 
 			        case '(':
 						 tokens[nr_token].type='(';
+						 position++;
 						 break;
 
 			        case ')':
 				        tokens[nr_token].type=')';
+					position++;
 				        break;
 
 					case '!':
 				        tokens[nr_token].type='!';
+					position++;
 				        break;
 
 					case NUMBER:
                         tokens[nr_token].type=NUMBER;
 						strncpy(tokens[nr_token].str, substr_start, substr_len);
+						position+=strlen(tokens[nr_token].str);
                         assert(strlen(tokens[nr_token].str)<32);
 				        break;
 
 					case AND:
 						tokens[nr_token].type=AND;
 						strncpy(tokens[nr_token].str, substr_start, substr_len);
+						position+=2;
 						break;
 
 					case OR:
 						tokens[nr_token].type=OR;
 						strncpy(tokens[nr_token].str, substr_start, substr_len);
+						position+=2;
                         break;
 
 					case NOTEQ:
 					    tokens[nr_token].type=NOTEQ;
 						strncpy(tokens[nr_token].str, substr_start, substr_len);
+						position+=2;
 						break;
 
                     case HEX:
 					    tokens[nr_token].type=HEX;
 						strncpy(tokens[nr_token].str, substr_start, substr_len);
-                        assert(strlen(tokens[nr_token].str)>=32);
+						position+=strlen(tokens[nr_token].str);
+                        assert(strlen(tokens[nr_token].str)<32);
 				        break;
 
 					case REG:
 	                    tokens[nr_token].type=REG;
 						strncpy(tokens[nr_token].str, substr_start, substr_len);
-                        assert(strlen(tokens[nr_token].str)>=32);
+						position+=strlen(tokens[nr_token].str);
+                        assert(strlen(tokens[nr_token].str)<32);
 						break;
 
 					case EQ:
 				        tokens[nr_token].type=EQ;
 						strncpy(tokens[nr_token].str, substr_start, substr_len);
+						position+=2;
 				        break;		 
 				}
                               nr_token++;
