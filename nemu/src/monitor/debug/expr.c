@@ -293,7 +293,9 @@ uint32_t eval(int p, int q) {
 				}
 			
 		}
-        int val1 = eval(p, op - 1);
+		int val1;
+		if(op==p)val1=0;
+		else  val1 = eval(p, op - 1);
         int val2 = eval(op + 1, q);
 
         switch(tokens[op].type) {
