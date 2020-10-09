@@ -304,6 +304,12 @@ uint32_t eval(int p, int q) {
             case '*': return val1 * val2; 
             case '/': return val1 / val2;
 			case '!': return !val2;
+	                case EQ :
+			    if(val1==val2)return 1;
+				else return 0;
+			case NOTEQ:
+			    if(val1==val2)return 0;
+				else return 1;
 			case AND: return val1 && val2;
 			case OR: return val1 || val2;
 			case MINUS: return -val2;
