@@ -273,7 +273,7 @@ uint32_t eval(int p, int q) {
     }
     else {
         int op=p,i,left=0;
-		int present_pr=1;
+		int present_pr=0;
 		for(i=p;i<=q;i++){
 			if(tokens[i].type=='('){
 				left++;
@@ -294,7 +294,7 @@ uint32_t eval(int p, int q) {
 			
 		}
 		int val1;
-		if(op==p){val1=0;printf("stupid");}
+		if(op==p)val1=0;
 		else  val1 = eval(p, op - 1);
         int val2 = eval(op + 1, q);
 
