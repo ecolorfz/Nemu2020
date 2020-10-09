@@ -93,62 +93,68 @@ static bool make_token(char *e) {
 					default: panic("please implement me");
 					         break;
 					case NOTYPE:break;	 
-
 					case '+':
 						 tokens[nr_token].type='+';
 						 strncpy (tokens[nr_token].str,substr_start,substr_len);
-
-						tokens[nr_token].str[substr_len]='\0';
+						 tokens[nr_token].str[substr_len]='\0';
+						 nr_token++;
+							  position += substr_len;
 						 break;
 
 				    case '-':
 						 tokens[nr_token].type='-';
 						strncpy (tokens[nr_token].str,substr_start,substr_len);
-
+                        nr_token++;
+							  position += substr_len;
 						tokens[nr_token].str[substr_len]='\0';
 						 break;
 
 			        case '*':
 						 tokens[nr_token].type='*';
 					        strncpy (tokens[nr_token].str,substr_start,substr_len);
-
+                            nr_token++;
+							  position += substr_len;
 						tokens[nr_token].str[substr_len]='\0';
 						 break;
 
 			        case '/':
 						 tokens[nr_token].type='/';
 						strncpy (tokens[nr_token].str,substr_start,substr_len);
-
+                        nr_token++;
+							  position += substr_len;
 						tokens[nr_token].str[substr_len]='\0';
 						 break;
 
 			        case '(':
 						 tokens[nr_token].type='(';
 					         strncpy (tokens[nr_token].str,substr_start,substr_len);
-
+                          nr_token++;
+							  position += substr_len;
 						tokens[nr_token].str[substr_len]='\0';
 						 break;
 
 			        case ')':
 				        tokens[nr_token].type=')';
 				        strncpy (tokens[nr_token].str,substr_start,substr_len);
-
+                         nr_token++;
+							  position += substr_len;
 						tokens[nr_token].str[substr_len]='\0';
 				        break;
 
 					case '!':
 				        tokens[nr_token].type='!';
 			                strncpy (tokens[nr_token].str,substr_start,substr_len);
-
+                         nr_token++;
+							  position += substr_len;
 						tokens[nr_token].str[substr_len]='\0';
 				        break;
 
 					case NUMBER:
                         tokens[nr_token].type=NUMBER;
 						strncpy(tokens[nr_token].str, substr_start, substr_len);
-
-
 						tokens[nr_token].str[substr_len]='\0';
+						nr_token++;
+							  position += substr_len;
                         assert(strlen(tokens[nr_token].str)<32);
 				        break;
 
@@ -156,46 +162,51 @@ static bool make_token(char *e) {
 						tokens[nr_token].type=AND;
 						strncpy(tokens[nr_token].str, substr_start, substr_len);
 					 tokens[nr_token].str[substr_len]='\0';
-
+                       nr_token++;
+							  position += substr_len;
 						break;
 
 					case OR:
 						tokens[nr_token].type=OR;
 						strncpy(tokens[nr_token].str, substr_start, substr_len);
 						 tokens[nr_token].str[substr_len]='\0';
-					
-                       				 break;
+						 nr_token++;
+							  position += substr_len;
+					     break;
 
 					case NOTEQ:
 					    tokens[nr_token].type=NOTEQ;
 						strncpy(tokens[nr_token].str, substr_start, substr_len);
 						 tokens[nr_token].str[substr_len]='\0';
-
+						 nr_token++;
+							  position += substr_len;
 						break;
 
                     case HEX:
 					    tokens[nr_token].type=HEX;
 						strncpy(tokens[nr_token].str, substr_start, substr_len);
 				 tokens[nr_token].str[substr_len]='\0';
-
+				         nr_token++;
+							  position += substr_len;
                         assert(strlen(tokens[nr_token].str)<32);
 				        break;
 
 					case REG:
 	                    tokens[nr_token].type=REG;
 						strncpy(tokens[nr_token].str, substr_start, substr_len);
-			
+						nr_token++;
+							  position += substr_len;
                         assert(strlen(tokens[nr_token].str)<32);
 						break;
 
 					case EQ:
 				        tokens[nr_token].type=EQ;
 						strncpy(tokens[nr_token].str, substr_start, substr_len);
-						
+						nr_token++;
+							  position += substr_len;
 				        break;		 
 				}
-                              nr_token++;
-							  position += substr_len;
+                              
 				
 			}
 		}
