@@ -92,7 +92,9 @@ static bool make_token(char *e) {
 				switch(rules[i].token_type) {
 					default: panic("please implement me");
 					         break;
-					case NOTYPE:break;	 
+					case NOTYPE:
+					    position += substr_len;
+					    break;	 
 					case '+':
 						 tokens[nr_token].type='+';
 						 strncpy (tokens[nr_token].str,substr_start,substr_len);
@@ -299,6 +301,7 @@ uint32_t eval(int p, int q) {
             case '-': return val1 - val2; 
             case '*': return val1 * val2; 
             case '/': return val1 / val2;
+			case '!': return !val2;
 			case AND: return val1 && val2;
 			case OR: return val1 || val2;
 			case MINUS: return -val2;
