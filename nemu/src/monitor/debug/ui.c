@@ -91,12 +91,13 @@ static int cmd_x(char *args){
 
 
 static int cmd_p(char *args){
-	char *arg1=strtok(NULL," ");
+
 	bool success=true;
-	uint32_t ans = expr(arg1,&success);
+	uint32_t ans = expr(args,&success);
 	if(success)
     	printf("%d\n",ans);
-	
+	else
+		assert(0);
    	 return 0;
 }
 
