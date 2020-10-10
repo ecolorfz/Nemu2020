@@ -111,10 +111,14 @@ static int cmd_d(char *args){
 }
 
 static int cmd_w(char *args){
-	while(F){
-		manip();
-		F--;
-	}
+	WP *f;
+	bool suc;
+	f = new_wp();
+	printf ("Watchpoint %d: %s\n",f->NO,args);
+	f->result = expr (args,&suc);
+	strcpy (f->expr,args);
+	if (!suc)Assert(1,"Wrong\n");
+	printf ("Result: %d\n",f->result);
 	return 0;
 }
 

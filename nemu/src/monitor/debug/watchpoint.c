@@ -69,7 +69,6 @@ void free_wp(WP *wp){
 void manip(){
         WP *f;
 	f = head;
-	F=1;
 	bool suc;
 	while (f != NULL){
 		uint32_t tmp_expr = expr (f->expr,&suc);
@@ -79,8 +78,8 @@ void manip(){
 			printf("Watchpoint %d: %s changes\n",f->NO,f->expr);
 			f->result = tmp_expr;
 		}
+		else 
 		f = f->next;
-		F++;
 	}
 	return;
 }
@@ -94,6 +93,8 @@ void delete_wp(int num){
 void info_wp(){
 	WP *f;
 	f=head;
+	if(f==NULL)
+		printf("no watchpoints left\n");
 	while (f!=NULL)
 	{
 		printf ("Watchpoint %d: %s = %d\n",f->NO,f->expr,f->result);
