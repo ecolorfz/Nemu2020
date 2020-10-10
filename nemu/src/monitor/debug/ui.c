@@ -45,12 +45,9 @@ static int cmd_si(char *args){
 		cpu_exec(1);
 		return 0;
 	}
-       if(strcmp(arg,"10")==0){
-	       cpu_exec(10);
-	       return 0;
-       }
        else{
-	       i=(long long)(arg-'0');
+	       sscanf(arg,"%d",&i);
+
 	       cpu_exec(i);
 	       return 0;
        }
