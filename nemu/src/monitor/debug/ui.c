@@ -71,6 +71,7 @@ static int cmd_info(char *args){
 	return 0;
        
        if(strcmp(arg,"w")==0){
+             info_wp();
        }
         return 0;
 }
@@ -105,11 +106,18 @@ static int cmd_p(char *args){
 }
 
 static int cmd_d(char *args){
+	char *arg=strtok(NULL, " ");
+	int num;
+	sscanf(arg, "%d",&num);
+	delete_wp(num);
 	return 0;
 }
 
 static int cmd_w(char *args){
-	
+	while(F){
+		manip();
+		F--;
+	}
 	return 0;
 }
 
