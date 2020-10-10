@@ -68,7 +68,10 @@ static int cmd_info(char *args){
 		}
 		printf("$eip, 0x%x\n",cpu.eip);
 	}
-        
+	return 0;
+       
+       if(strcmp(arg,"w")==0){
+       }
         return 0;
 }
 
@@ -101,6 +104,15 @@ static int cmd_p(char *args){
    	 return 0;
 }
 
+static int cmd_d(char *args){
+	return 0;
+}
+
+static int cmd_w(char *args){
+	
+	return 0;
+}
+
 static int cmd_help(char *args);
 
 static struct {
@@ -115,6 +127,8 @@ static struct {
 	{ "info", "info r:Print the status of the register, info w:Print the status of watchpoint",cmd_info},
 	{ "x", "x N EXPR:Find the value of the expression EXPR, use the result as the starting memory address, and output N successive 4-byte values in hexadecimal form. ",cmd_x},
         { "p", "p EXPR:Evaluate expression EXPR",cmd_p},
+	{ "d", "d N:Delete watchpoint at position N",cmd_d},
+	{ "w", "w EXPR:Stop program when the result of EXPR changes",cmd_w},
 	/* TODO: Add more commands */
 
 };
