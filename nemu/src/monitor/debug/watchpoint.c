@@ -66,7 +66,7 @@ void free_wp(WP *wp){
 	return;
 }
 
-void manip(){
+bool manip(){
         WP *f;
 	f = head;
 	bool suc;
@@ -74,14 +74,14 @@ void manip(){
 		uint32_t tmp_expr = expr (f->expr,&suc);
 		if (!suc)assert (1);
 		if (tmp_expr != f->result){
-			nemu_state=STOP;
 			printf("Watchpoint %d: %s changes\n",f->NO,f->expr);
 			f->result = tmp_expr;
+			return false;
 		}
 		else 
 		f = f->next;
 	}
-	return;
+	return true;
 }
 
 void delete_wp(int num){
