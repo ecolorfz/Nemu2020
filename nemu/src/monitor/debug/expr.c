@@ -293,9 +293,26 @@ uint32_t eval(int p, int q) {
 				}
 			
 		}
-		int val1;
-		if(op==p)val1=0;
-		else  val1 = eval(p, op - 1);
+
+
+		if (p == op || tokens [op].type == MINUS || tokens [op].type == '!')
+
+		{
+			uint32_t val = eval (op + 1,q);
+			switch (tokens[op].type)
+
+ 			{
+				case MINUS:return -val;
+
+				case '!':return !val;
+
+				default :Assert (1,"default\n");
+
+			}
+
+        	}
+		else{
+		     int val1 = eval(p, op - 1);
         int val2 = eval(op + 1, q);
 
         switch(tokens[op].type) {
@@ -303,7 +320,7 @@ uint32_t eval(int p, int q) {
             case '-': return val1 - val2; 
             case '*': return val1 * val2; 
             case '/': return val1 / val2;
-			case '!': return !val2;
+
 	                case EQ :
 			    if(val1==val2)return 1;
 				else return 0;
@@ -312,10 +329,11 @@ uint32_t eval(int p, int q) {
 				else return 1;
 			case AND: return val1 && val2;
 			case OR: return val1 || val2;
-			case MINUS: return -val2;
-			case DEFER: return swaddr_read(val2,4);
+
+
             default: assert(0);
         }
+    }
     }
 	return 0;
 }
