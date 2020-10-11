@@ -41,12 +41,12 @@ WP *new_wp(){
 }
 
 void free_wp(WP *wp){
-	if(free_==NULL){
-		free_=wp;
-		return;
-	}
 	WP *f,*p;
 	p=free_;
+	if(p==NULL){
+                 free_=wp;
+		 p=free_;
+	}
 	f=head;
 	while (p->next) p=p->next;
 	p->next = wp;
