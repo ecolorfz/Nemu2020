@@ -294,7 +294,7 @@ uint32_t eval(int p, int q) {
 			
 		}
 
-
+                 printf("%d\n",op);
 		if (p == op || tokens [op].type == MINUS || tokens [op].type == '!'||tokens[op].type==DEFER)
 
 		{
