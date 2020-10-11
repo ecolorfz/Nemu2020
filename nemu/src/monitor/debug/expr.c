@@ -259,8 +259,33 @@ uint32_t eval(int p, int q) {
             sscanf(tokens[p].str,"%x",&num);
 			return num;
 		}
-		else if(tokens[p].type==REG){
-		return 1;
+	     else if (tokens[p].type == REG)
+		{
+			if (strlen (tokens[p].str) == 3) {
+			int i;
+			for (i = R_EAX; i <= R_EDI; i ++)
+				if (strcmp (tokens[p].str,regsl[i]) == 0)break;
+				if (i > R_EDI)
+				if (strcmp (tokens[p].str,"eip") == 0)
+					num = cpu.eip;
+				else Assert (1,"no this register!\n");
+			else num = reg_l(i);
+ 			}
+ 			else if (strlen (tokens[p].str) == 2) {
+ 			if (tokens[p].str[1] == 'x' || tokens[p].str[1] == 'p' || tokens[p].str[1] == 'i') {
+				int i;
+				for (i = R_AX; i <= R_DI; i ++)
+					if (strcmp (tokens[p].str,regsw[i]) == 0)break;
+				num = reg_w(i);
+			}
+ 			else if (tokens[p].str[1] == 'l' || tokens[p].str[1] == 'h') {
+				int i;
+				for (i = R_AL; i <= R_BH; i ++)
+					if (strcmp (tokens[p].str,regsb[i]) == 0)break;
+				num = reg_b(i);
+			}
+			else assert (1);
+			}
 		}
 	
         /* Single token.
@@ -290,11 +315,9 @@ uint32_t eval(int p, int q) {
             else if(pr(tokens[i].type)>=present_pr){
 					op=i;
 					present_pr=pr(tokens[i].type);
-				}
-			
+				}	
 		}
-
-
+		printf("%d",tokens[op].type);
 		if (p == op || tokens [op].type == MINUS || tokens [op].type == '!'||tokens[op].type==DEFER)
 
 		{
