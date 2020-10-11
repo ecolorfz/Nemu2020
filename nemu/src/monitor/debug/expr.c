@@ -268,7 +268,7 @@ uint32_t eval(int p, int q) {
 				if (i > R_EDI)
 				if (strcmp (tokens[p].str,"eip") == 0)
 					num = cpu.eip;
-				else Assert (1,"no this register!\n");
+				else assert(0);
 			else num = reg_l(i);
  			}
  			else if (strlen (tokens[p].str) == 2) {
@@ -312,23 +312,20 @@ uint32_t eval(int p, int q) {
 			}	
 			if(i>q)break;
 			else if(tokens[i].type==NUMBER||tokens[i].type==REG||tokens[i].type==HEX)continue;
-            else if(pr(tokens[i].type)>=present_pr){
+                        else if(pr(tokens[i].type)>=present_pr){
 					op=i;
 					present_pr=pr(tokens[i].type);
 				}	
 		}
-		printf("%d",tokens[op].type);
+		//printf("%d",tokens[op].type);
 		if (p == op || tokens [op].type == MINUS || tokens [op].type == '!'||tokens[op].type==DEFER)
-
 		{
 			int j;
 			for(j=p;j<q;j++){
 				if(pr(j)==pr(op)&&j<op)op=j;}
 
 			uint32_t val = eval (op + 1,q);
-			switch (tokens[op].type)
-
- 			{
+			switch (tokens[op].type){
 				case MINUS:return -val;
 		                case DEFER:return swaddr_read(val,4);
 				case '!':return !val;
@@ -338,7 +335,7 @@ uint32_t eval(int p, int q) {
         	}
 		else{
 		     int val1 = eval(p, op - 1);
-        int val2 = eval(op + 1, q);
+                     int val2 = eval(op + 1, q);
 
         switch(tokens[op].type) {
             case '+': return val1 + val2;
