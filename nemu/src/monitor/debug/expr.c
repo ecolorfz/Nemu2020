@@ -295,19 +295,21 @@ uint32_t eval(int p, int q) {
 		}
 
 
-		if (p == op || tokens [op].type == MINUS || tokens [op].type == '!')
+		if (p == op || tokens [op].type == MINUS || tokens [op].type == '!'||tokens[op].type==DEFER)
 
 		{
+			int j;
+			for(j=p;j<q;j++){
+				if(pr(j)==pr(op)&&j<op)op=j;}
+
 			uint32_t val = eval (op + 1,q);
 			switch (tokens[op].type)
 
  			{
 				case MINUS:return -val;
-
+		                case DEFER:return swaddr_read(val,4);
 				case '!':return !val;
-
 				default :Assert (1,"default\n");
-
 			}
 
         	}
