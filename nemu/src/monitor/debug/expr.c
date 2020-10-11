@@ -234,11 +234,11 @@ bool check_parentheses(int p, int q){
 }
 
 int pr(int type){
-	if(type=='!'||type==MINUS||type==DEFER)return 1;
-	if(type=='*'||type=='/')return 2;
-	if(type=='+'||type=='-')return 3;
-	if(type==AND)return 4;
-	if(type==OR)return 5;
+	if(type=='!'||type==MINUS||type==DEFER)return 2;
+	if(type=='*'||type=='/')return 3;
+	if(type=='+'||type=='-')return 4;
+	if(type==AND)return 5;
+	if(type==OR)return 6;
 	return 0;
 }
 
@@ -294,7 +294,7 @@ uint32_t eval(int p, int q) {
 			
 		}
 
-                 printf("%d\n",op);
+
 		if (p == op || tokens [op].type == MINUS || tokens [op].type == '!'||tokens[op].type==DEFER)
 
 		{
