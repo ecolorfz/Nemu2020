@@ -31,7 +31,7 @@ WP *new_wp(){
 	h = head;
 	if (h == NULL){
 		head = f;
-		h = f;
+		h = head;
 	}
 	else {
 		while (h->next) h=h->next;
