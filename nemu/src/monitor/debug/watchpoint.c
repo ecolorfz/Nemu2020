@@ -155,6 +155,7 @@ void delete_wp(int num)
 	f = &wp_pool[num];
 
 	free_wp (f);
+	printf("watchpoint %d deleted\n",num);
 
 }
 
