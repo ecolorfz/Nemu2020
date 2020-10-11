@@ -65,9 +65,8 @@ static int cmd_info(char *args){
 		}
 		printf("$eip, 0x%x\n",cpu.eip);
 	}
-	return 0;
        
-       if(strcmp(arg,"w")==0){
+	else  if(strcmp(arg,"w")==0){
              info_wp();
        }
         return 0;
