@@ -21,8 +21,6 @@ void init_wp_pool() {
 
 /* TODO: Implement the functionality of watchpoint */
 WP *new_wp(){
-	if(free_==NULL)assert(0);
-
 	WP *f,*h;
 	f = free_;
 	f->next=NULL;
