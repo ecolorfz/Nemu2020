@@ -20,7 +20,9 @@ void init_wp_pool() {
 }
 
 /* TODO: Implement the functionality of watchpoint */
-WP *new_wp(){
+WP *new_wp(){ 
+	if(free_==NULL)assert(0);
+
 	WP *f,*h;
 	f = free_;
 	f->next=NULL;
@@ -67,7 +69,7 @@ void free_wp(WP *wp){
 bool manip(){
         WP *f;
 	f = head;
-	bool suc;
+	bool suc=true;
 	while (f != NULL){
 		uint32_t tmp_expr = expr (f->expr,&suc);
 		if (!suc)assert (1);
